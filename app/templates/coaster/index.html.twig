@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des Coasters</h1>
+
+    <table class="table">
+        <tr>
+            <th>Nom</th>
+            <th>Vitesse maximale</th>
+            <th>Longueur</th>
+            <th>Hauteur maximale</th>
+            <th>Parc</th>
+            <th>Catégories</th>
+            <th>Ouvert ?</th>
+            <th>Actions</th>
+        </tr>
+        {% for c in coasters %}
+            <tr>
+                <td>{{ c.name }}</td>
+                <td>{{ c.maxSpeed }} km/h</td>
+                <td>{{ c.length }} m</td>
+                <td>{{ c.maxHeight }} m</td>
+                <td>{{ c.park ? c.park.name : '-' }}</td>
+                <td>
+                    {# Boucle sur les catégories du coaster avec un petit badge DaisyUI #}
+                    {% for cat in c.categories %}
+                        <span class="badge" style="background-color: {{ cat.color }}; color: white;">
+                            {{ cat.name }}
+                        </span>
+                    {% else %}
+                        -
+                    {% endfor %}
+                </td>
+                <td>{{ c.operating ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('app_coaster_edit', {id: c.id}) }}" class="btn btn-xs btn-outline">Modifier</a>
+                    <a href="{{ path('app_coaster_delete', {id: c.id}) }}" class="btn btn-xs btn-error">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="8">Vide</td></tr>
+        {% endfor %}
+    </table>
+
+    <a href="{{ path('app_coaster_add') }}" class="btn btn-primary mb-4">Ajouter un Coaster</a>
+{% endblock %}

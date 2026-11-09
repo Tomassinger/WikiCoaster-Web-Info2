@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer {{ coaster.name }}{% endblock %}
+
+{% block body %}
+    <div class="max-w-md mx-auto bg-base-100 p-6 rounded-box shadow">
+        <h1 class="text-xl font-bold mb-4">Supprimer {{ coaster.name }}</h1>
+
+        <p class="mb-6">Êtes-vous sûr de vouloir supprimer ce coaster ?</p>
+
+        <form method="post" class="flex gap-4">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ coaster.id) }}">
+            <button type="submit" class="btn btn-warning">Supprimer</button>
+            <a href="{{ path('app_coaster_index') }}" class="btn btn-ghost">Annuler</a>
+        </form>
+    </div>
+{% endblock %}
