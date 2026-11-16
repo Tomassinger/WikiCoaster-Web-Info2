@@ -11,6 +11,7 @@
             <th>Hauteur maximale</th>
             <th>Parc</th>
             <th>Catégories</th>
+            <th>Description</th>
             <th>Ouvert ?</th>
             <th>Actions</th>
         </tr>
@@ -31,6 +32,7 @@
                         -
                     {% endfor %}
                 </td>
+                <td>{{ c.description }}</td>
                 <td>{{ c.operating ? 'Oui' : 'Non' }}</td>
                 <td>
                     <a href="{{ path('app_coaster_edit', {id: c.id}) }}" class="btn btn-xs btn-outline">Modifier</a>
@@ -38,7 +40,7 @@
                 </td>
             </tr>
         {% else %}
-            <tr><td colspan="8">Vide</td></tr>
+            <tr><td colspan="9">Vide</td></tr>
         {% endfor %}
     </table>
 

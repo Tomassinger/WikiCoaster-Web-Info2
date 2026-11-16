@@ -23,13 +23,22 @@
     <body>
         <main class="flex flex-nowrap h-[100vh]">
             <div class="flex flex-col shrink-0 shadow w-[240px] bg-base-200">
-                <div class="py-2 bg-primary text-center text-white">Wiki Coaster</div>
+                <div class="py-2 bg-primary text-center text-white font-bold">Wiki Coaster</div>
+                
+                <!-- Menu de navigation latéral -->
+                <nav class="flex flex-col p-2 gap-2 mt-2">
+                    <a href="{{ path('app_coaster_index') }}" class="btn btn-ghost justify-start">Coasters</a>
+                    <a href="{{ path('app_park_index') }}" class="btn btn-ghost justify-start">Parcs</a>
+                    <a href="{{ path('app_category_index') }}" class="btn btn-ghost justify-start">Catégories</a>
+                    {% if is_granted('ROLE_USER') == false %} <a href="{{ path('app_register') }}" class="btn btn-ghost justify-start">S'inscrire</a> {% endif %}
+                    <a href="{{ path('app_login') }}" class="btn btn-ghost justify-start">Se connecter</a>
+                </nav>
             </div>
-            <div class="p-4 flex-grow-1">
-                <div class="bg-base-200 p-2 rounded-xs border-base-300">
+            <div class="p-4 flex-grow">
+                <div class="bg-base-200 p-4 rounded-xs border-base-300">
                     {% block body %}{% endblock %}
                 </div>     
             </div>
-        </main>    
+        </main>   
     </body>
 </html>

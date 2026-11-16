@@ -20,6 +20,7 @@ class CoasterType extends AbstractType
             ->add('length')
             ->add('maxHeight')
             ->add('operating')
+            ->add('description')
             ->add('park', EntityType::class, ['class' => Park::class,])
             ->add('categories', EntityType::class, ['class' => Category::class,'multiple' => true,'expanded' => true, ]);
     }

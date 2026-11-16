@@ -14,7 +14,12 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('color', ColorType::class)
+            ->add('color', ColorType::class, [
+            'label' => 'Couleur',
+            'attr' => [
+                'value' => '#3b82f6',
+            ],
+        ])
         ;
     }
 
